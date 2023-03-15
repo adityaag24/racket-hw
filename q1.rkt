@@ -8,3 +8,16 @@
 (define mercedes (make-vehicle "Mercedes SLK200" 120000 8000))
 (define bmw (make-vehicle "BMW i8" 20000 3000))
 (define vw (make-vehicle "VW Beetle" 40000 2500))
+
+(define (print-vehicle vehicle-struct)
+    (printf "Brand: ~a\n" (vehicle-brand-model vehicle-struct))
+    (printf "Mileage: ~a\n" (vehicle-mileage vehicle-struct))
+    (printf "Purchase Price: ~a\n" (vehicle-purchase-price vehicle-struct))
+    (printf "Selling Price: ~a\n" (vehicle-selling-price vehicle-struct))
+)
+
+(print-vehicle ford)
+(print-vehicle audi)
+(print-vehicle mercedes)
+(print-vehicle bmw)
+(print-vehicle vw)
