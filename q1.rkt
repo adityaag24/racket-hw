@@ -18,9 +18,17 @@
     (printf "Selling Price: ~a\n" (vehicle-selling-price vehicle-struct)))
 
 (define (update-sp vehicle-struct)
-    (if (<= (vehicle-mileage vehicle-struct) 50000)
-        (struct-copy vehicle vehicle-struct [selling-price (* 1.25 (vehicle-purchase-price vehicle-struct))])
-        (struct-copy vehicle vehicle-struct [selling-price (* 1.2 (vehicle-purchase-price vehicle-struct))]))
+    (define field-mileage (vehicle-mileage vehicle-struct))
+    (define field-pp (vehicle-purchase-price vehicle-struct))
+    (printf "Mileage:~a\n" field-mileage)
+    (printf "Purchase Price:~a\n" field-pp)
+    (cond
+        [(<= field-mileage 50000) (set-vehicle-selling-price! vehicle-struct (* 1.25 field-pp))]
+        [(<= field-mileage 100000) (set-vehicle-selling-price! vehicle-struct (* 1.20 field-pp))]
+        [(<= field-mileage 150000) (set-vehicle-selling-price! vehicle-struct (* 1.10 field-pp))]
+        [else (set-vehicle-selling-price! vehicle-struct (+ 500 field-pp))]
+    )
+    
 )   
 
 (print-vehicle ford)
@@ -30,4 +38,12 @@
 (print-vehicle vw)
 
 (update-sp ford)
+(update-sp audi)
+(update-sp mercedes)
+(update-sp bmw)
+(update-sp vw)
 (print-vehicle ford)
+(print-vehicle audi)
+(print-vehicle mercedes)
+(print-vehicle bmw)
+(print-vehicle vw)
